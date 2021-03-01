@@ -1,0 +1,101 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.localization,
+.climate-conditions {
+  font-size: 32px;
+}
+
+.localization {
+  font-size: 32px;
+  margin-bottom: 4px;
+  color: #fff;
+  /* color: #2d2d2d; */
+}
+
+.climate-conditions {
+  font-size: 22px;
+  margin-bottom: 10px;
+  margin-top: 0;
+  /* color: #909090; */
+  color: #fff;
+}
+
+.current-temperature {
+  font-size: 48px;
+  /* color: #2d2d2d; */
+  color: #fff;
+  font-weight: 600;
+}
+
+.climate-conditions-img {
+  width: 150px;
+}
+
+.max-min-temperature {
+  font-size: 14px;
+  /* color: #909090; */
+  color: #fff;
+  font-weight: 400;
+}
+
+.temperature {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-weather {
+  display: flex;
+}
+
+.animation {
+  animation-name: slidein;
+  animation-duration: 12s;
+
+  opacity: 0;
+}
+
+@keyframes slidein {
+  0% {
+    margin-left: 100%;
+    width: 300%;
+    display: block;
+    opacity: 1;
+  }
+
+  40% {
+    margin-left: 0%;
+    width: 100%;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  87% {
+    opacity: 0.75;
+  }
+
+  90% {
+    opacity: 0.5;
+  }
+
+  92% {
+    opacity: 0.25;
+  }
+
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    display: none;
+  }
+}

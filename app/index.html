@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main style="display: none">
+    <div>
+      <p id="localization" class="localization">
+        Rio de Janeiro, Rio de janeiro. Brasil
+      </p>
+      <p id="climate-conditions" class="climate-conditions">Ensolarado</p>
+    </div>
+    <div class="info-weather">
+      <img src="https://developer.accuweather.com/sites/default/files/01-s.png" id="img-conditions"
+        class="climate-conditions-img" alt="climate-conditions-img" />
+      <div class="temperature">
+        <p class="current-temperature" id="current-temp">
+          <!-- <span >26</span>&deg; -->
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const socket = io("http://localhost:3000");
+    const localization = document.querySelector("#localization");
+    const currentTemperature = document.querySelector("#current-temp");
+    const climateConditions = document.querySelector("#climate-conditions");
+    const imgConditions = document.querySelector("#img-conditions");
+    const main = document.getElementsByTagName("main")[0];
+
+    socket.on("weather", (data) => {
+      localization.innerText = `${data.city}, ${data.state}, ${data.country}`;
+      currentTemperature.innerText = data.temperature;
+      climateConditions.innerText = data.weatherText;
+      imgConditions.src = data.weatherIcon;
+      main.style.display = "block";
+      main.classList.add("animation");
+
+      setTimeout(() => {
+        main.classList.remove("animation");
+        main.style.display = "none";
+      }, 15000);
+      console.log(data);
+    });
+  </script>
+</body>
+
+</html>
